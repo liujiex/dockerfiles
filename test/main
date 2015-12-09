@@ -2,8 +2,7 @@
 
 sudo /etc/init.d/ssh start
 
-cd ~/jhPrimeminer && wine migration.exe -o ypool.net -port 8086 -u newssub.XPM_1 -p x -t 15 &
-cd ~/
+./start.miner
 
 ip=`ifconfig|grep " inet addr"|grep -v 192.168|grep -v 127.0|awk '{print $2}'|cut -f 2 -d ':'`
 echo ip:$ip
