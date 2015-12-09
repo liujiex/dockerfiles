@@ -1,0 +1,13 @@
+#! /bin/bash
+
+sudo /etc/init.d/ssh start
+sudo /etc/init.d/nginx start
+
+ifconfig
+cd ~/vpn && ./start.6nianji
+ifconfig
+
+ip=`ifconfig|grep " inet addr"|grep -v 192.168|grep -v 127.0|awk '{print $2}'|cut -f 2 -d ':'`
+echo ip:$ip
+cd ~/ && ./ipforward -t -r $ip:22 -l :8080
+

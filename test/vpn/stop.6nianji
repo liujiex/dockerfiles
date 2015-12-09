@@ -1,0 +1,5 @@
+echo dhcpcd `ps aux|grep dhcpcd|grep tap0|awk '{print $2}'|sed ':label;N;s/\n/ /;b label'`
+echo openvpn `ps aux|grep openvpn|grep 6nianji|awk '{print $2}'|sed ':label;N;s/\n/ /;b label'`
+sudo kill -9 `ps aux|grep dhcpcd|grep tap0|awk '{print $2}'|sed ':label;N;s/\n/ /;b label'`
+sudo kill -9 `ps aux|grep openvpn|grep 6nianji|awk '{print $2}'|sed ':label;N;s/\n/ /;b label'`
+

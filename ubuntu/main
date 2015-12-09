@@ -1,0 +1,8 @@
+#! /bin/bash
+
+sudo /etc/init.d/ssh start
+
+ip=`ifconfig|grep " inet addr"|grep -v 192.168|grep -v 127.0|awk '{print $2}'|cut -f 2 -d ':'`
+echo ip:$ip
+./ipforward -t -r $ip:22 -l :8080
+
