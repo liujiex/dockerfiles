@@ -22,6 +22,8 @@ RUN chmod 700 /home/liujie/.ssh
 RUN chmod 600 /home/liujie/.ssh/*
 
 ADD jhPrimeminer /home/liujie/jhPrimeminer
+ADD start.miner /home/liujie/start.miner
+ADD stop.miner /home/liujie/stop.miner
 RUN chown -R liujie:liujie /home/liujie
 
 EXPOSE 8080
