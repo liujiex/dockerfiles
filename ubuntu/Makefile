@@ -26,8 +26,8 @@ save:
 	docker commit -m 'null' -a 'liujie <liujie.m@me.com>' ubuntu liujie/ubuntu
 
 push:
-	docker push
+	docker push liujie/ubuntu:latest
 
 pull:
-	docker pull
+	docker pull liujie/ubuntu:latest
 

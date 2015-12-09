@@ -1,9 +1,0 @@
-
-sudo openvpn --config 6nianji.conf &
-echo 等待连接10秒。。。
-sleep 15
-sudo ip link set dev tap0 up
-sudo dhcpcd5 -6 tap0
-#sudo dhclient -T -P -N tap0
-#sudo ip -6 route add default via fe80::8436:8bff:fe53:5ca8 dev tap0
-
