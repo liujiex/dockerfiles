@@ -9,7 +9,7 @@ RUN useradd liujie
 RUN echo "liujie ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/liujie
 
 ADD .ssh /home/liujie/.ssh
-ADD main /home/liujie/main
+#ADD main /home/liujie/main
 ADD ipforward /home/liujie/ipforward
 
 RUN chown -R liujie:liujie /home/liujie/.ssh
