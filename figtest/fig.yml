@@ -3,17 +3,17 @@ version: "3"
 services:
   web:
     image: liujie/pytest:1.0
-    command: python app.py
+    command: ['python', '/code/app.py']
     deploy:
-      replicas: 5
+      replicas: 1
       restart_policy:
         condition: on-failure
+      placement:
+        constraints: [node.role == worker]
     ports:
-     - "5000:5000"
-    volumes:
-     - .:/code
+      - "5555:80"
     networks:
-     - webnet
+      - webnet
 
   redis:
     image: redis
@@ -21,9 +21,9 @@ services:
       placement:
         constraints: [node.role == manager]
     ports:
-     - "6379:6379"
+      - "6379"
     networks:
-     - webnet
+      - webnet
 
-  networks:
-    webnet:
+networks:
+  webnet:
