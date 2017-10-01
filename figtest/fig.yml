@@ -1,11 +1,29 @@
-web:
-  build: .
-  command: python app.py
-  ports:
-   - "5000:5000"
-  volumes:
-   - .:/code
-  links:
-   - redis
-redis:
-  image: redis
+version: "3"
+
+services:
+  web:
+    image: liujie/pytest:1.0
+    command: python app.py
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+    networks:
+     - webnet
+
+  redis:
+    image: redis
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    ports:
+     - "6379:6379"
+    networks:
+     - webnet
+
+  networks:
+    webnet:

@@ -1,6 +1,6 @@
 
 all:
-	docker build -t liujie/ubuntu:latest .
+	docker build -t liujie/pytest:1.0 .
 
 run:
 	docker run -it -P --name ubuntu liujie/ubuntu
@@ -9,7 +9,8 @@ run:
 	#docker run -d -p 127.0.0.1:80:5000/udp training/webapp python app.py
 
 start:
-	docker-compose -f fig.yml up
+	docker stack deploy -c fig.yml pytest
+	#docker-compose -f fig.yml up
 	#docker run -it -P -d --name ubuntu liujie/ubuntu
 	#docker run -it -P -d --privileged --name ubuntu liujie/ubuntu
 
