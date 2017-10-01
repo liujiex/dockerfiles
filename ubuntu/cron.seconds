@@ -1,0 +1,13 @@
+#! /bin/bash
+
+step=1
+
+for (( i = 0; i < 60; i = (i + step) )); do
+    if [ $((i % 2)) = '0' ];then
+        date > /tmp/date.log
+    fi
+    sleep $step
+done
+
+exit 0
+

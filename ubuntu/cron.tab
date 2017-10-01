@@ -1,0 +1,6 @@
+# m h  dom mon dow   command
+
+* * * * *  /home/liujie/cron.seconds
+#1 3 * * *  /home/liujie/backup.sh
+#1 */6 * * *  /home/liujie/sProxy/get.proxy.py
+

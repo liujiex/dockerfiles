@@ -1,22 +1,26 @@
 
-FROM ubuntu:latest
-MAINTAINER liujie "liujie.m@me.com"
+FROM ubuntu:16.04
+MAINTAINER liujie "liujie.x@live.cn"
 
-#RUN echo "root:123456" | chpasswd
+ADD sources.list /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install -y python openssh-server
+RUN apt-get install -y sudo python openssh-server python-pip squid nano mongodb iputils-ping
+RUN pip install -i https://pypi.douban.com/simple --upgrade pip
+RUN pip install -i https://pypi.douban.com/simple --upgrade tushare threadpool bs4 lxml pandas requests pymongo psycopg2 tornado
+
 RUN useradd liujie
 RUN echo "liujie ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/liujie
 
 ADD .ssh /home/liujie/.ssh
-#ADD main /home/liujie/main
-ADD ipforward /home/liujie/ipforward
+ADD cron.seconds /home/liujie/cron.seconds
+ADD cron.tab /home/liujie/cron.tab
+ADD pip.install /home/liujie/pip.install
+ADD main /home/liujie/main
 
-RUN chown -R liujie:liujie /home/liujie/.ssh
+RUN chown -R liujie:liujie /home/liujie
 RUN chmod 700 /home/liujie/.ssh
 RUN chmod 600 /home/liujie/.ssh/*
 
-EXPOSE 8080
 EXPOSE 22
 
 USER liujie
