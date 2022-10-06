@@ -3,8 +3,8 @@
 step=1
 
 for (( i = 0; i < 60; i = (i + step) )); do
-    if [ $((i % 2)) = '0' ];then
-        date > /tmp/date.log
+    if [ $((i % 5)) = '0' ];then
+        date
     fi
     sleep $step
 done

@@ -1,0 +1,5 @@
+#! /bin/bash
+
+cd $1
+sudo sh -c "tar lcf - * |(cd $2; tar xpvf - )"
+

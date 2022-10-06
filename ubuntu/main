@@ -5,3 +5,4 @@ sudo /etc/init.d/cron start
 
 crontab /home/liujie/cron.tab
 
+while true; do sleep 10; echo `date`'      10秒循环过程中...'; done;

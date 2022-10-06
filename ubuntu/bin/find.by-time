@@ -1,0 +1,33 @@
+#! /bin/bash
+
+. $(dirname $0)/utils.sh
+
+help(){
+  color white black
+  cat << HELP
+功能: 根据修改时间查找文件
+命令格式: 
+
+查找一天内修改的c++源码文件
+find . -mtime 0 -print | grep -E '\.h$|\.c$|\.cc$|\.cpp$|\.cxx$'
+
+查找两天内修改的c++源码文件
+find . -mtime -2 -print | grep -E '\.h$|\.c$|\.cc$|\.cpp$|\.cxx$'
+  
+查找10分钟内修改的c++源码文件
+find . -mmin -10 -print | grep -E '\.h$|\.c$|\.cc$|\.cpp$|\.cxx$'
+
+查找文件长度为0
+find . -size 0
+
+atime = 访问文件
+ctime = 修改状态
+mtime = 修改内容
+
+  
+HELP
+  colorend
+}
+
+help
+

@@ -1,0 +1,1 @@
+python3 -m pip install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple --user --upgrade $@

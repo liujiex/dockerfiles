@@ -1,0 +1,29 @@
+#! /bin/bash
+
+. utils.sh
+
+help(){
+  color white black
+  cat << HELP
+功能: 以守护进程模式启动程序
+命令格式: $(basename "$0") [-l 重定向log文件] 命令 [参数]
+HELP
+  colorend
+}
+
+check_help $@
+
+if [ "$#" == "0" ]; then
+    help
+    exit 0
+elif [ "$1" == "-l" ]; then
+    logs=$2
+    shift;shift;
+    remains=$@
+    echo "nohup $remains > $logs 2>&1 &"
+    nohup $remains > $logs 2>&1 &
+else
+   echo "nohup $@ > /dev/null 2>&1 &"
+   nohup $@ > /dev/null 2>&1 &
+fi
+

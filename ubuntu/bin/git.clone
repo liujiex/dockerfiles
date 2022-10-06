@@ -1,0 +1,17 @@
+#! /bin/bash
+
+. $(dirname $0)/utils.sh
+
+help(){
+  color white black
+  cat << HELP
+功能: 从 g.6jk.pub 网盘仓库clone项目
+命令格式: $(basename "$0") 项目名
+HELP
+  colorend
+}
+
+check_help $@
+
+git clone gitolite3@g.6jk.pub:$1.git
+

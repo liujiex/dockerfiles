@@ -1,0 +1,17 @@
+#! /bin/bash
+
+. $(dirname $0)/utils.sh
+
+help(){
+  color white black
+  cat << HELP
+功能: 将当前git仓库发布到 h.6jk.pub 网盘仓库
+命令格式: $(basename "$0") 项目名
+HELP
+  colorend
+}
+
+check_help $@
+
+git push gitolite3@g.6jk.pub:$1.git master
+

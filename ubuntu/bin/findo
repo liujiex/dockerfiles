@@ -1,0 +1,20 @@
+#! /bin/bash
+
+. $(dirname $0)/utils.sh
+
+help(){
+  color white black
+  cat << HELP
+功能: 查找并操作文件
+命令格式: $(basename "$0") [开始位置] "[文件名匹配字符串]" [cmd1];[cmd2];[cmd3];...
+HELP
+  colorend
+}
+
+check_help $@
+
+start="$1"
+str="$2"
+shift;shift;
+eval 'find "$start" -name "$str" -exec "$@" {} \;'
+

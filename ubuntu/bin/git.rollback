@@ -1,0 +1,18 @@
+#! /bin/bash
+
+. $(dirname $0)/utils.sh
+
+help(){
+  color white black
+  cat << HELP
+功能: 使用远程库内容 丢弃本地库内容
+命令格式: $(basename "$0")
+HELP
+  colorend
+}
+
+check_help $@
+
+git fetch --all
+git reset --hard origin/master
+
