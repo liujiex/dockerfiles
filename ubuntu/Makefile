@@ -1,35 +1,41 @@
+IMG_NAME=liujie/ubuntu
+#TAG=lasted
+#TAG=1.0
+TAG=2.0
+RUN_NAME=ubuntu.x
+SAVE_NAME=liujie.ubuntu
 
 all:
-	docker build -t liujie/ubuntu:2.0 .
+	docker build -t $(IMG_NAME):$(TAG) .
 
 run:
-	docker run -it -P --rm --name ubuntu.x liujie/ubuntu:2.0
+	docker run -it -P --rm --name $(RUN_NAME) $(IMG_NAME):$(TAG)
 
 start:
-	docker run -it -P -d --name ubuntu.x liujie/ubuntu:2.0
+	docker run -it -P -d --name $(RUN_NAME) $(IMG_NAME):$(TAG)
 
 stop:
-	docker stop ubuntu.x
-	docker rm ubuntu.x
+	docker stop $(RUN_NAME)
+	docker rm $(RUN_NAME)
 
 clean:
-	docker rmi liujie/ubuntu:2.0
+	docker rmi $(IMG_NAME):$(TAG)
 
 view:
-	docker exec -it ubuntu.x /bin/bash
+	docker exec -it $(RUN_NAME) /bin/bash
 
 commit:
-	docker commit -m 'null' -a 'liujie <liujie.x@live.cn>' ubuntu.x liujie/ubuntu:2.0
+	docker commit -a 'liujie <liujie.x@live.cn>' $(RUN_NAME) $(IMG_NAME):$(TAG)
 
 save:
-	docker save liujie/ubuntu:2.0 > ubuntu.x_img.tar
+	docker save $(IMG_NAME):$(TAG) > $(SAVE_NAME)_$(TAG).img
 
 load:
-	docker load < ubuntu.x_img.tar
+	docker load < $(SAVE_NAME)_$(TAG).img
 
 push:
-	docker push liujie/ubuntu:2.0
+	docker push $(IMG_NAME):$(TAG)
 
 pull:
-	docker pull liujie/ubuntu:2.0
+	docker pull $(IMG_NAME):$(TAG)
 

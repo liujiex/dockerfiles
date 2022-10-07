@@ -11,6 +11,7 @@ ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata
 
+RUN apt-get install -y net-tools iputils-ping traceroute iproute2
 RUN apt-get install -y nano sudo cron openssh-server
 
 RUN apt-get clean autoclean
@@ -32,13 +33,14 @@ ADD bin /home/liujie/bin
 RUN chown -R liujie:liujie /home/liujie/bin
 ADD cron.seconds /home/liujie/cron.seconds
 ADD cron.tab /home/liujie/cron.tab
-ADD main /home/liujie/main
-RUN chown liujie:liujie /home/liujie/cron.tab /home/liujie/cron.seconds /home/liujie/main
+ADD main.entry /home/liujie/main.entry
+RUN chown liujie:liujie /home/liujie/cron.tab /home/liujie/cron.seconds /home/liujie/main.entry
 
 
 EXPOSE 22
 
 USER liujie
 WORKDIR /home/liujie
-CMD /bin/bash
-#ENTRYPOINT /home/liujie/main
+#CMD /bin/bash
+CMD /home/liujie/main.entry
+#ENTRYPOINT /home/liujie/main.entry
