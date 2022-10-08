@@ -1,8 +1,8 @@
 IMG_NAME=liujie/ubuntu
-#TAG=lasted
+#TAG=latest
 #TAG=1.0
 TAG=2.0
-RUN_NAME=ubuntu.x
+RUN_NAME=ux001
 SAVE_NAME=liujie.ubuntu
 
 all:
